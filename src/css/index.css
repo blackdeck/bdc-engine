@@ -1,0 +1,75 @@
+
+div {
+  /*  border: 1px solid; /*  for debug */
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-element {
+  flex: 1;
+}
+
+.slim {
+  padding: 0px;
+  margin: 0px;
+}
+.slim-top {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+.slim-bottom {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+.slim-left {
+  padding-left: 0px;
+  margin-left: 0px;
+}
+.slim-right {
+  padding-right: 0px;
+  margin-right: 0px;
+}
+.slim-margin {
+  margin: 0px;
+}
+.slim-padding {
+  padding: 0px;
+}
+
+.filament {
+  padding: 2px;
+  margin: 2px;
+}
+.fat {
+  padding: 6px;
+  margin: 6px;
+}
+.moat {
+  padding: 30px 100px;
+  margin: 30px 100px;
+}
+
+.alignleft {
+  float: left;
+  align-content: left;
+  align: left;
+}
+.alignright {
+  float: right;
+  align-content: right;
+  align: right;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
