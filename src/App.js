@@ -81,6 +81,16 @@ class App extends Component {
         }
     }
 
+    drawCost(cost) {
+        let text = '';
+        _.each(cost, (value, resource) => {
+            if (value > 0) {
+                text += resource + ': ' + value + ' ';
+            }
+        });
+        return text;
+    };
+
     isEnough(state, cost) {
         let enough = true;
         _.each(cost, (value, resource_key) => {
@@ -91,7 +101,6 @@ class App extends Component {
 
     chargeCost(state, cost) {
         if (!this.isEnough(this.state, cost)) return false;
-        console.log(cost);
         _.each(cost, (value, resource_key) => {
             state[resource_key] -= value;
         });
@@ -102,20 +111,24 @@ class App extends Component {
     render() {
         let state = this.state;
 
-        const tooltip = (
+        const tooltip = (state, item) => (
             <Tooltip id="tooltip">
 
-                <div className="col-lg-12 infoBar">This is the place for the long resource info.
+                <div className="col-lg-12 infoBar">
+                    {item.name}
                     <br />
-                    It should describes benefits and negative sides of having the resource.
+                    {item.text}
                 </div>
 
                 <div className="line"> </div>
 
-                <div className="row">
-                    <div className="col-sm-6 infoBar">Resource</div>
-                    <div className="col-sm-6 infoBar">1/0</div>
-                </div>
+                {_.map(item.cost, (value, resource_key) => {
+                    return <div className="row" key={resource_key}>
+                        <div className="col-sm-6 infoBar">{resource_key}</div>
+                        <div className="col-sm-6 infoBar">{state[resource_key]} / {value}</div>
+                    </div>
+                })}
+
             </Tooltip>
         );
 
@@ -139,8 +152,8 @@ class App extends Component {
                             (item.locked && item.locked(this.state))
                                 ? ''
                                 :
-                                <div key={key} title={item.text ? item.text : '' }>
-                                    <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                <div key={key}>
+                                    <OverlayTrigger delay={150} placement="right" overlay={tooltip(this.state, item)}>
                                         {this.state[key]
                                             ? <span>{item.name}</span>
                                             :
@@ -159,8 +172,8 @@ class App extends Component {
                             (item.locked && item.locked(this.state))
                                 ? ''
                                 :
-                                <div key={key} title={item.text ? item.text : '' }>
-                                    <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                <div key={key}>
+                                    <OverlayTrigger delay={150} placement="right" overlay={tooltip(this.state, item)}>
                                         <Button
                                             className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
                                             onClick={() => { this.onClickWrapper(item); }}>
@@ -176,8 +189,8 @@ class App extends Component {
                             (item.locked && item.locked(this.state))
                                 ? ''
                                 :
-                                <div key={key} title={item.text ? item.text : '' }>
-                                    <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                <div key={key}>
+                                    <OverlayTrigger delay={150} placement="right" overlay={tooltip(this.state, item)}>
                                         {state[key] ? <span>{item.name}: {state[key]}</span> : ''}
                                         {<Button
                                             className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
