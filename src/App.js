@@ -8,9 +8,9 @@ import {game_name} from './game/app_config';
 import {getDefaultState} from './game/default_state';
 import {tick} from './game/tick';
 import {data} from './game/data';
+import {oneclickers} from './game/oneclickers';
 import {clickers} from './game/clickers';
 import {automators} from './game/automators';
-
 
 
 class App extends Component {
@@ -69,7 +69,33 @@ class App extends Component {
 
 
     onClickWrapper(item) {
-        if (item.onClick) this.setState(item.onClick(this.state));
+        if (item.cost) {
+            if (this.isEnough(this.state, item.cost)) {
+                if (item.onClick) this.setState(item.onClick(this.chargeCost(this.state, item.cost)));
+
+            }
+            else { return false; }
+        }
+        else {
+            if (item.onClick) this.setState(item.onClick(this.state));
+        }
+    }
+
+    isEnough(state, cost) {
+        let enough = true;
+        _.each(cost, (value, resource_key) => {
+            if (state[resource_key] < value) enough = false;
+        });
+        return enough;
+    }
+
+    chargeCost(state, cost) {
+        if (!this.isEnough(this.state, cost)) return false;
+        console.log(cost);
+        _.each(cost, (value, resource_key) => {
+            state[resource_key] -= value;
+        });
+        return state;
     }
 
 
@@ -108,26 +134,60 @@ class App extends Component {
                         )}
                     </div>
                     <div className="flex-element">
+                        <h3>OneClickers</h3>
+                        {_.map(oneclickers, (item, key) =>
+                            (item.locked && item.locked(this.state))
+                                ? ''
+                                :
+                                <div key={key} title={item.text ? item.text : '' }>
+                                    <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                        {this.state[key]
+                                            ? <span>{item.name}</span>
+                                            :
+                                            <button
+                                                className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
+                                                onClick={() => { this.onClickWrapper(item); }}>
+                                                {item.name}
+                                            </button>}
+                                    </OverlayTrigger>
+                                </div>
+                        )}
+                    </div>
+                    <div className="flex-element">
                         <h3>Clickers</h3>
-                        {_.map(clickers, (item, key) => (item.locked && item.locked(this.state)) ? '' :
-                            <div key={key}>
-                                <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
-                                    <Button  onClick={() => { this.onClickWrapper(item); }}>{item.name}</Button>
-                                </OverlayTrigger>
-                            </div>
+                        {_.map(clickers, (item, key) =>
+                            (item.locked && item.locked(this.state))
+                                ? ''
+                                :
+                                <div key={key} title={item.text ? item.text : '' }>
+                                    <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                        <Button
+                                            className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
+                                            onClick={() => { this.onClickWrapper(item); }}>
+                                            {item.name}
+                                        </Button>
+                                    </OverlayTrigger>
+                                </div>
                         )}
                     </div>
                     <div className="flex-element">
                         <h3>Automation</h3>
                         {_.map(automators, (item, key) =>
-                            <div key={key}>
-                                {state[key] ? <span>{item.name}: {state[key]}</span> : ''}
-                                {(item.locked && item.locked(this.state)) ? '' : <Button onClick={() => { this.onClickWrapper(item); }}>Buy {item.name}</Button>}
-                            </div>
+                            (item.locked && item.locked(this.state))
+                                ? ''
+                                :
+                                <div key={key} title={item.text ? item.text : '' }>
+                                    <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                        {state[key] ? <span>{item.name}: {state[key]}</span> : ''}
+                                        {<Button
+                                            className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
+                                            onClick={() => { this.onClickWrapper(item); }}>
+                                            Buy {item.name}
+                                        </Button>}
+                                    </OverlayTrigger>
+                                </div>
                         )}
                     </div>
-
-
                 </div>
             </div>
         );
