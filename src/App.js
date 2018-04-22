@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import './css/App.css';
+import { Tooltip, Button, OverlayTrigger } from 'react-bootstrap';
 
 import {game_name} from './game/app_config';
 import {getDefaultState} from './game/default_state';
@@ -9,6 +10,8 @@ import {tick} from './game/tick';
 import {data} from './game/data';
 import {clickers} from './game/clickers';
 import {automators} from './game/automators';
+
+
 
 class App extends Component {
     constructor(props) {
@@ -73,11 +76,28 @@ class App extends Component {
     render() {
         let state = this.state;
 
+        const tooltip = (
+            <Tooltip id="tooltip">
+
+                <div className="col-lg-12 infoBar">This is the place for the long resource info.
+                    <br />
+                    It should describes benefits and negative sides of having the resource.
+                </div>
+
+                <div className="line"> </div>
+
+                <div className="row">
+                    <div className="col-sm-6 infoBar">Resource</div>
+                    <div className="col-sm-6 infoBar">1/0</div>
+                </div>
+            </Tooltip>
+        );
+
 
         return (
             <div className="App">
                 <h2>BDC Engine Test App</h2>
-                <button onClick={this.newGame}>New Game</button>
+                <Button onClick={this.newGame}>New Game</Button>
                 <div className="flex-container-row">
                     <div className="flex-element">
                         <h3>Data</h3>
@@ -91,7 +111,9 @@ class App extends Component {
                         <h3>Clickers</h3>
                         {_.map(clickers, (item, key) => (item.locked && item.locked(this.state)) ? '' :
                             <div key={key}>
-                                <button onClick={() => { this.onClickWrapper(item); }}>{item.name}</button>
+                                <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                    <Button  onClick={() => { this.onClickWrapper(item); }}>{item.name}</Button>
+                                </OverlayTrigger>
                             </div>
                         )}
                     </div>
@@ -100,10 +122,12 @@ class App extends Component {
                         {_.map(automators, (item, key) =>
                             <div key={key}>
                                 {state[key] ? <span>{item.name}: {state[key]}</span> : ''}
-                                {(item.locked && item.locked(this.state)) ? '' : <button onClick={() => { this.onClickWrapper(item); }}>Buy {item.name}</button>}
+                                {(item.locked && item.locked(this.state)) ? '' : <Button onClick={() => { this.onClickWrapper(item); }}>Buy {item.name}</Button>}
                             </div>
                         )}
                     </div>
+
+
                 </div>
             </div>
         );
