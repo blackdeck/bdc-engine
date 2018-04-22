@@ -96,7 +96,7 @@ class App extends Component {
 
         return (
             <div className="App">
-                <h2>Particles Inkremental</h2>
+                <h2>BDC Engine Test App</h2>
                 <Button onClick={this.newGame}>New Game</Button>
                 <div className="flex-container-row">
                     <div className="flex-element">
