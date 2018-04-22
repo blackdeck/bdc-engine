@@ -3,6 +3,16 @@ div {
   /*  border: 1px solid; /*  for debug */
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.disabled {
+  background-color: lightslategray;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .flex-container-column {
   display: flex;
   flex-direction: column;

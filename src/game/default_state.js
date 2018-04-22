@@ -21,6 +21,15 @@ const default_state = {
     decks_miner: 0,
     games_miner: 0,
 
+    thinking: false,
+    drawing: false,
+    making: false,
+    packing: false,
+    creativity: false,
+    design: false,
+    producing: false,
+    selling: false,
+
 
     game_speed: 1000,
     game_speed_multiplier: 1,
