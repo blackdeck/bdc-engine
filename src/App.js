@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import './css/App.css';
-import  {Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Tooltip, Button, OverlayTrigger } from 'react-bootstrap';
 
 import {game_name} from './game/app_config';
 import {getDefaultState} from './game/default_state';
@@ -97,7 +97,7 @@ class App extends Component {
         return (
             <div className="App">
                 <h2>Particles Inkremental</h2>
-                <button  title="Universe expands faster than ever" className="btn btn-default" onClick={this.newGame}>New Game</button>
+                <Button onClick={this.newGame}>New Game</Button>
                 <div className="flex-container-row">
                     <div className="flex-element">
                         <h3>Data</h3>
@@ -111,8 +111,8 @@ class App extends Component {
                         <h3>Clickers</h3>
                         {_.map(clickers, (item, key) => (item.locked && item.locked(this.state)) ? '' :
                             <div key={key}>
-                                <OverlayTrigger placement="right" overlay={tooltip}>
-                                    <button className="btn-primary" onClick={() => { this.onClickWrapper(item); }}>{item.name}</button>
+                                <OverlayTrigger delay="150" placement="right" overlay={tooltip}>
+                                    <Button  onClick={() => { this.onClickWrapper(item); }}>{item.name}</Button>
                                 </OverlayTrigger>
                             </div>
                         )}
@@ -122,7 +122,7 @@ class App extends Component {
                         {_.map(automators, (item, key) =>
                             <div key={key}>
                                 {state[key] ? <span>{item.name}: {state[key]}</span> : ''}
-                                {(item.locked && item.locked(this.state)) ? '' : <button className="btn-primary" onClick={() => { this.onClickWrapper(item); }}>Buy {item.name}</button>}
+                                {(item.locked && item.locked(this.state)) ? '' : <Button onClick={() => { this.onClickWrapper(item); }}>Buy {item.name}</Button>}
                             </div>
                         )}
                     </div>
