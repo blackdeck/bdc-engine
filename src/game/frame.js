@@ -1,14 +1,18 @@
 
 import _ from 'lodash';
 
-import {actions} from './actions';
 import {rules} from './rules';
+import {modes} from './modes';
+import {modules} from './modules';
 
 export const frame = (state) => {
-    if (actions[state.mode].onFrame) state = actions[state.mode].onFrame(state);
+    if (modes[state.mode].onFrame) state = modes[state.mode].onFrame(state);
 
-    _.each(rules, (rule) => {
-        if (rule.onFrame) state = rule.onFrame(state);
+    _.each(rules, (item) => {
+        if (item.onFrame) state = item.onFrame(state);
+    });
+    _.each(modules, (item) => {
+        if (item.onFrame) state = item.onFrame(state);
     });
 
     return state;
