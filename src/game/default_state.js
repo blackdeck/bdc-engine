@@ -6,7 +6,7 @@ import {genTarget} from '../game/targets';
 
 const default_state = {
 
-    ideas: 0,
+    ideas: 1000,
     cards: 0,
     decks: 0,
     games: 0,
@@ -44,6 +44,9 @@ const default_state = {
     weapon: genModuleState('weapon'),
     repairer: genModuleState('repairer'),
     target: genTarget(1),
+
+    weapon_upgrade: 0,
+    armor_upgrade: 0,
 
     mode: 'slow',
     matrix_show: '',

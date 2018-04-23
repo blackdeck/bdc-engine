@@ -15,6 +15,7 @@ import {clickers} from './game/clickers';
 import {automators} from './game/automators';
 import {modes} from './game/modes';
 import {modules} from './game/modules';
+import {upgrades} from './game/upgrades';
 
 
 class App extends Component {
@@ -222,14 +223,14 @@ class App extends Component {
                     </div>
                 </div>
 
-                <div className="flex-container-row" style={{bottom: '0px'}}>
+                <div className="flex-container-row">
                     <div className="flex-element">
                         <h4>Tick: {this.state.tick} Frame: {this.state.frame} </h4>
                         <h4>Mode: {modes[this.state.mode].name}</h4>
                         <h4>Stamina: {this.state.player.stamina}</h4>
                         <h4>Armor: {this.state.player.armor_current} / {this.state.player.armor}</h4>
                     </div>
-                    <div className="flex-element flex-container-column">
+                    <div className="flex-element flex-container-column" style={{height: '100%'}}>
                         <div className="flex-element flex-container-row">
                         {_.map(modes, (item, key) =>
                             (item.locked && item.locked(this.state))
@@ -276,6 +277,25 @@ class App extends Component {
                                         <div className="flex-element">
                                             Next: {state[key].next_command}
                                         </div>
+                                    </div>
+                            )}
+                        </div>
+                        <div className="flex-element flex-container-row">
+                            {_.map(upgrades, (item, key) =>
+                                (item.locked && item.locked(this.state))
+                                    ? ''
+                                    :
+                                    <div className="flex-element" key={key}>
+                                        <OverlayTrigger delay={150} placement="bottom" overlay={tooltip(this.state, item)}>
+                                        <div className="flex-container-column">
+                                            {state[key] ? <span className="flex-element">{item.name}: {state[key]}</span> : ''}
+                                            {<span className="flex-element"><Button
+                                                className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
+                                                onClick={() => { this.onClickWrapper(item); }}>
+                                                Buy {item.name}
+                                            </Button></span>}
+                                        </div>
+                                        </OverlayTrigger>
                                     </div>
                             )}
                         </div>
