@@ -286,16 +286,17 @@ class App extends Component {
                                     ? ''
                                     :
                                     <div className="flex-element" key={key}>
-                                        <OverlayTrigger delay={150} placement="bottom" overlay={tooltip(this.state, item)}>
                                         <div className="flex-container-column">
                                             {state[key] ? <span className="flex-element">{item.name}: {state[key]}</span> : ''}
-                                            {<span className="flex-element"><button
+                                            { <OverlayTrigger delay={150} placement="bottom" overlay={tooltip(this.state, item)}>
+                                                <span className="flex-element"><button
                                                 className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
                                                 onClick={() => { this.onClickWrapper(item); }}>
                                                 Buy {item.name}
-                                            </button></span>}
+                                            </button></span>
+                                            </OverlayTrigger>}
                                         </div>
-                                        </OverlayTrigger>
+
                                     </div>
                             )}
                         </div>
