@@ -9,12 +9,14 @@ body {
   overflow: auto;
 }
 
-#tooltip > .tooltip-inner{
+#tooltip > .tooltip-inner {
   width: 200px;
-  background-color: #9E9D9D;
+  background-color: #EFEEEE;
+  color: black;
+  border: 1px solid #BDBDBD;
 
 }
 
 #tooltip > .tooltip-arrow{
-  color: #9E9D9D;
+  display: none;
 }
