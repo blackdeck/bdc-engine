@@ -39,7 +39,7 @@ export const modules = {
                 state.target = genTarget(state.target.level + 1);
             }
             else {
-                state.target.armor_current -= 1;
+                state.target.armor_current -= 1 + state.weapon_upgrade;
             }
             return state; }
     },
@@ -81,7 +81,7 @@ export const modules = {
                 state.repairer.next_command = 'stop'
             }
             else {
-                state.player.armor_current += 10;
+                state.player.armor_current += 2 * state.armor_upgrade;
             }
             return state; }
     },
