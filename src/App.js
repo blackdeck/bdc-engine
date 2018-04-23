@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import _ from 'lodash';
+import { Tooltip, Button, OverlayTrigger } from 'react-bootstrap';
 
 import './css/App.css';
-import { Tooltip, Button, OverlayTrigger } from 'react-bootstrap';
 
 import {game_name} from './game/app_config';
 import {getDefaultState} from './game/default_state';
+import {frame} from './game/frame';
 import {tick} from './game/tick';
 import {data} from './game/data';
 import {oneclickers} from './game/oneclickers';
 import {clickers} from './game/clickers';
 import {automators} from './game/automators';
+import {actions} from './game/actions';
 
 
 class App extends Component {
@@ -38,8 +41,8 @@ class App extends Component {
     playGame() {
         clearInterval(this.timerID);
         this.timerID = setInterval(
-            () => this.tick(),
-            Math.floor(this.state.game_speed / this.state.game_speed_multiplier)
+            () => this.frame(),
+            Math.floor(this.state.game_speed / this.state.frame_rate / this.state.game_speed_multiplier)
         );
         this.setState({game_paused: false});
     }
@@ -61,10 +64,25 @@ class App extends Component {
         this.playGame();
     }
 
-    tick() {
-        let state = tick(this.state);
-        localStorage.setItem(game_name+"_app_state", JSON.stringify(state));
+    frame() {
+        let state = frame(this.state);
+        state.frame++;
+
+        let frame_rate = state.mode === "slow" ? state.frame_rate * 2
+                       : state.mode === "fast" ? Math.round(state.frame_rate / 2)
+                       : state.frame_rate;
+
+        if (state.frame % frame_rate === 0) {
+            state = this.tick(state);
+            state.tick++;
+        }
         this.setState(state);
+    }
+
+    tick(initial_state) {
+        let state = tick(initial_state);
+        localStorage.setItem(game_name+"_app_state", JSON.stringify(state));
+        return state; // this.setState(state);
     }
 
 
@@ -111,13 +129,12 @@ class App extends Component {
     render() {
         let state = this.state;
 
-        const tooltip = (state, item) => (
+        const tooltip = (state, item) =>
             <Tooltip id="tooltip">
-
                 <div className="col-lg-12 infoBar">
                     {item.name}
                     <br />
-                    {item.text}
+                    {item.text ? item.text : ''}
                 </div>
 
                 <div className="line"> </div>
@@ -128,9 +145,8 @@ class App extends Component {
                         <div className="col-sm-6 infoBar">{state[resource_key]} / {value}</div>
                     </div>
                 })}
+            </Tooltip>;
 
-            </Tooltip>
-        );
 
 
         return (
@@ -155,13 +171,13 @@ class App extends Component {
                                 <div key={key}>
                                     <OverlayTrigger delay={150} placement="right" overlay={tooltip(this.state, item)}>
                                         {this.state[key]
-                                            ? <span>{item.name}</span>
+                                            ? <span className="badge">{item.name}</span>
                                             :
-                                            <button
+                                            <Button
                                                 className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
                                                 onClick={() => { this.onClickWrapper(item); }}>
                                                 {item.name}
-                                            </button>}
+                                            </Button>}
                                     </OverlayTrigger>
                                 </div>
                         )}
@@ -190,16 +206,47 @@ class App extends Component {
                                 ? ''
                                 :
                                 <div key={key}>
-                                    <OverlayTrigger delay={150} placement="right" overlay={tooltip(this.state, item)}>
-                                        {state[key] ? <span>{item.name}: {state[key]}</span> : ''}
-                                        {<Button
-                                            className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
-                                            onClick={() => { this.onClickWrapper(item); }}>
-                                            Buy {item.name}
-                                        </Button>}
+                                    <OverlayTrigger delay={150} placement="left" overlay={tooltip(this.state, item)}>
+                                        <span>
+                                            {state[key] ? <span>{item.name}: {state[key]}</span> : ''}
+                                            {<Button
+                                                className={(item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : '')}
+                                                onClick={() => { this.onClickWrapper(item); }}>
+                                                Buy {item.name}
+                                            </Button>}
+                                        </span>
                                     </OverlayTrigger>
                                 </div>
                         )}
+                    </div>
+                </div>
+                <div className="flex-container-row" style={{bottom: '0px'}}>
+                    <div className="flex-element">
+                        <h3>Tick: {this.state.tick} Frame: {this.state.frame} </h3>
+                        <h3>Stamina: {this.state.stamina}</h3>
+                        <h3>Mode: {actions[this.state.mode].name}</h3>
+                    </div>
+                    <div className="flex-element flex-container-column">
+                    {_.map(actions, (item, key) =>
+                        (item.locked && item.locked(this.state))
+                            ? ''
+                            :
+                            <div className="flex-element" key={key}>
+                                <OverlayTrigger delay={150} placement="right" overlay={tooltip(this.state, item)}>
+                                    {<Button
+                                        className={classNames(
+                                            this.state.mode === key ? 'btn-success' : 'btn-warning',
+                                            item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : ''
+                                        )}
+                                        onClick={() => { this.onClickWrapper(item); }}>
+                                        {item.name}
+                                    </Button>}
+                                </OverlayTrigger>
+                            </div>
+                    )}
+                    </div>
+                    <div className="flex-element">
+                        {this.state.matrix_show}
                     </div>
                 </div>
             </div>
