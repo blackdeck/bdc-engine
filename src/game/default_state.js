@@ -1,7 +1,12 @@
 
+import _ from 'lodash';
+
+import {genModuleState} from '../game/modules';
+import {genTarget} from '../game/targets';
+
 const default_state = {
 
-    ideas: 0,
+    ideas: 1000,
     cards: 0,
     decks: 0,
     games: 0,
@@ -31,19 +36,32 @@ const default_state = {
     selling: false,
 
 
-    stamina: 1000,
+    player: {
+        armor_current: 1000,
+        armor: 1000,
+        stamina: 1000
+    },
+    weapon: genModuleState('weapon'),
+    repairer: genModuleState('repairer'),
+    target: genTarget(1),
+
+    weapon_upgrade: 0,
+    armor_upgrade: 0,
+
     mode: 'slow',
     matrix_show: '',
+
 
 
     game_speed: 1000,
     frame_rate: 30,
     game_speed_multiplier: 1,
-    game_paused: true,
     frame: 0,
-    tick: 0
+    tick: 0,
+    game_paused: true,
+    game_end: false
 };
 
 export const getDefaultState = () => {
-    return JSON.parse(JSON.stringify(default_state));
+    return _.cloneDeep(default_state);
 };
