@@ -25,3 +25,9 @@ button {
   border-radius: 3.5px;
   max-width: 120px;
 }
+
+.flex-element {
+  padding-top: 2.5px;
+  padding-bottom: 2.5px
+
+}
