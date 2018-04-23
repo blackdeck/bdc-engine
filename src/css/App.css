@@ -8,3 +8,15 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
   overflow: auto;
 }
+
+#tooltip > .tooltip-inner {
+  width: 200px;
+  background-color: #EFEEEE;
+  color: black;
+  border: 1px solid #BDBDBD;
+
+}
+
+#tooltip > .tooltip-arrow{
+  display: none;
+}
