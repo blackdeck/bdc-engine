@@ -31,9 +31,16 @@ const default_state = {
     selling: false,
 
 
+    stamina: 1000,
+    mode: 'slow',
+    matrix_show: '',
+
+
     game_speed: 1000,
+    frame_rate: 30,
     game_speed_multiplier: 1,
     game_paused: true,
+    frame: 0,
     tick: 0
 };
 
