@@ -138,7 +138,6 @@ class App extends Component {
                     {item.text ? item.text : ''}
                 </div>
 
-                <div className="line"> </div>
 
                 {_.map(item.cost, (value, resource_key) => {
                     return <div className="row" key={resource_key}>
@@ -289,9 +288,6 @@ class App extends Component {
                         <h4>Armor: {this.state.target.armor_current} / {this.state.target.armor}</h4>
                     </div>
                 </div>
-
-
-
             </div>
         );
     }
