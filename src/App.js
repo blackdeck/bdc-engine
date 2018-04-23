@@ -137,7 +137,6 @@ class App extends Component {
                     {item.text ? item.text : ''}
                 </div>
 
-                <div className="line"> </div>
 
                 {_.map(item.cost, (value, resource_key) => {
                     return <div className="row" key={resource_key}>
@@ -233,14 +232,14 @@ class App extends Component {
                             :
                             <div className="flex-element" key={key}>
                                 <OverlayTrigger delay={150} placement="right" overlay={tooltip(this.state, item)}>
-                                    {<Button
+                                    {<button
                                         className={classNames(
-                                            this.state.mode === key ? 'btn-success' : 'btn-warning',
+                                            this.state.mode === key ? "btn-success" : "btn-warning",
                                             item.cost ? this.isEnough(this.state, item.cost) ? '' : 'disabled' : ''
                                         )}
                                         onClick={() => { this.onClickWrapper(item); }}>
                                         {item.name}
-                                    </Button>}
+                                    </button>}
                                 </OverlayTrigger>
                             </div>
                     )}
