@@ -20,3 +20,8 @@ body {
 #tooltip > .tooltip-arrow{
   display: none;
 }
+
+button {
+  border-radius: 3.5px;
+  max-width: 120px;
+}
