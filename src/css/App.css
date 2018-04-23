@@ -20,3 +20,13 @@ body {
 #tooltip > .tooltip-arrow{
   display: none;
 }
+
+button {
+  border-radius: 3.5px;
+}
+
+.flex-element {
+  padding-top: 2.5px;
+  padding-bottom: 2.5px
+
+}
