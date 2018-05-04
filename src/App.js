@@ -133,6 +133,14 @@ class App extends Component {
     render() {
         let state = this.state;
 
+        // let zendesk = function() {
+        //         window.$zopim||(function(d,s){let z=$zopim=function(c){z._.push(c)},$=z.s=
+        //         d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        //         _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+        //         $.src="https://v2.zopim.com/?5fvIajBNQeJiUzk6FoktuJijyqyWke2J";z.t=+new Date;$.
+        //         type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+        // };
+
         const tooltip = (state, item) =>
             <Tooltip id="tooltip">
                 <div className="col-lg-12 infoBar">
@@ -186,7 +194,6 @@ class App extends Component {
                 </div>
 
                 <h2>BDC Engine Test App</h2>
-                <button onClick={this.newGame}>New Game</button>
 
                 <div className="flex-container-row">
                     <div className="flex-element">
@@ -330,6 +337,29 @@ class App extends Component {
                         <h4>Weapon: {this.state.target.dmg}</h4>
                         <h4>Armor: {this.state.target.armor_current} / {this.state.target.armor}</h4>
                     </div>
+                </div>
+
+                <div className="footer">
+                    <span className="pull-left"><a href="#" onClick={this.newGame} title='Hard Reset For Developers'>new game</a></span>
+
+                    &nbsp;
+                    <a target="_blank" rel="noopener noreferrer" href="https://t.me/polynezia">
+                        <img alt="" src="http://www.advanceduninstaller.com/7b12b396d38166a899fff585e466e50d-icon.ico" />
+                        &nbsp;
+                        telegram
+                    </a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a target="_blank" rel="noopener noreferrer" href="#">
+                        <img alt="" src="https://static.filehorse.com/icons-web/educational-software/wikipedia-icon-32.png" />
+                        &nbsp;
+                        wiki
+                    </a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a target="_blank" rel="noopener noreferrer" href="#">
+                        <img alt="" src="https://images-na.ssl-images-amazon.com/images/I/418PuxYS63L.png" />
+                        &nbsp;
+                        reddit
+                    </a>
                 </div>
             </div>
         );

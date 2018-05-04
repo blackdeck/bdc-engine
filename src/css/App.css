@@ -30,3 +30,34 @@ button {
   padding-bottom: 2.5px
 
 }
+
+
+.footer {
+  box-sizing: border-box;
+  padding: 7px 15px;
+  background-color:rgba(0,4,0,0.5);
+  color: #BCC5D6;
+  text-align: right;
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-weight: 100;
+  position: absolute;
+  width: 100vw;
+  bottom: 0;
+  font-size: 12px;
+}
+
+.footer a {
+  color: #D8DCE6;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #EBEEF5;
+}
+
+
+.footer a img {
+  width: 16px;
+  vertical-align: middle;
+  margin-top: -2px
+}
