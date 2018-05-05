@@ -5,7 +5,7 @@ import { Tooltip, OverlayTrigger, Modal } from 'react-bootstrap';
 
 import './css/App.css';
 
-import {game_name, social_links} from './game/app_config';
+import {game_name, social_links, support} from './game/app_config';
 import {getDefaultState} from './game/default_state';
 import {frame} from './game/frame';
 import {tick} from './game/tick';
@@ -354,7 +354,7 @@ class App extends Component {
                         Reddit
                     </a>
                     &nbsp;&nbsp;&nbsp;
-                    <a rel="noopener noreferrer" href="javascript:void($zopim.livechat.window.show());">
+                    <a rel="noopener noreferrer" href={support.show}>
                         <img alt="" src="https://image.flaticon.com/icons/svg/81/81924.svg"/>
                         &nbsp;
                         Support
