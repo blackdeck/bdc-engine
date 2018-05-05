@@ -28,3 +28,7 @@
     vertical-align: middle;
     margin-top: -2px
 }
+
+a[href=""] {
+    display: none;
+}
