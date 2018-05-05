@@ -4,3 +4,7 @@ export const social_links = {
     wiki: '#',
     reddit: '#'
 };
+
+export const support = {
+   show: 'javascript:void($zopim.livechat.window.show())',
+}
