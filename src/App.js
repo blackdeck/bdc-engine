@@ -336,7 +336,7 @@ class App extends Component {
                     <span className="pull-left"><a href="#" onClick={this.newGame} title='Hard Reset For Developers'>New game</a></span>
 
                     &nbsp;
-                    <a target="_blank" rel="noopener noreferrer" href="https://t.me/polynezia">
+                    <a target="_blank" rel="noopener noreferrer" href="#">
                         <img alt="" src="http://www.advanceduninstaller.com/7b12b396d38166a899fff585e466e50d-icon.ico" />
                         &nbsp;
                         Telegram
