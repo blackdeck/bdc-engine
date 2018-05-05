@@ -40,9 +40,10 @@ button {
   text-align: right;
   font-family: Helvetica, Arial, Sans-Serif;
   font-weight: 100;
-  position: absolute;
   width: 100vw;
-  bottom: 0;
+  position:fixed;
+  bottom:0;
+  z-index:50000;
   font-size: 12px;
 }
 
