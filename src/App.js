@@ -354,7 +354,7 @@ class App extends Component {
                         Reddit
                     </a>
                     &nbsp;&nbsp;&nbsp;
-                    <a rel="noopener noreferrer" href="javascript:void($zopim.livechat.button.setOffsetVertical(30), $zopim.livechat.button.hide() );">
+                    <a rel="noopener noreferrer" href="javascript:void($zopim.livechat.window.show());">
                         <img alt="" src="https://image.flaticon.com/icons/svg/81/81924.svg"/>
                         &nbsp;
                         Support
