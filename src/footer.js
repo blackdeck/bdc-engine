@@ -6,8 +6,6 @@ import {social_links, support} from './game/app_config';
 class Footer extends Component {
     constructor(props) {
         super(props);
-
-
     }
 
     render() {
