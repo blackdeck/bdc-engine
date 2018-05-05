@@ -4,13 +4,9 @@ import _ from 'lodash';
 import { Tooltip, OverlayTrigger, Modal } from 'react-bootstrap';
 import Footer from './footer.js'
 
-
 import './css/App.css';
-import './css/footer.css';
 
-
-
-import {game_name, social_links, support} from './game/app_config';
+import {game_name} from './game/app_config';
 import {getDefaultState} from './game/default_state';
 import {frame} from './game/frame';
 import {tick} from './game/tick';
@@ -337,7 +333,7 @@ class App extends Component {
                     </div>
                 </div>
 
-            <Footer />
+            <Footer newGame={this.newGame}/>
             </div>
         );
     }
