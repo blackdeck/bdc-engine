@@ -13,6 +13,7 @@
     <script>
         $zopim(function() {
             $zopim.livechat.hideAll();
+            $zopim.livechat.window.onHide( () => {$zopim.livechat.hideAll()} );
         });
     </script>
 
