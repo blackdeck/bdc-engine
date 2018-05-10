@@ -1,0 +1,28 @@
+.popup {
+  position: fixed;
+  z-index: 1024;
+  min-width: 480px;
+  min-height: 280px;
+  top: 50%;
+  left: 50%;
+  margin-top: -140px;
+  margin-left: -240px;
+  border: 1px solid #979797;
+  background-color: #fcfcfc;
+  border-radius: 2px;
+  box-shadow: 0 24px 24px rgba(0, 0, 0, 0.3), 0 0 24px rgba(0, 0, 0, 0.22);
+}
+
+.popup-header {
+  text-align: center;
+  height: 40px;
+  border-bottom: 1px solid #b4c7cf;
+}
+
+.popup-close-button {
+  line-height: 0;
+  position: absolute;
+  right: 5px;
+  top: 2px;
+  cursor: pointer;
+}

@@ -17,6 +17,7 @@ import {automators} from './game/automators';
 import {modes} from './game/modes';
 import {modules} from './game/modules';
 import {upgrades} from './game/upgrades';
+import Popup from "./utils/Popup/Popup";
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
         this.setGameSpeed = this.setGameSpeed.bind(this);
         this.tick = this.tick.bind(this);
         this.newGame = this.newGame.bind(this);
+        this.createPopup = this.createPopup.bind(this);
 
         this.state = getDefaultState();
 
@@ -130,6 +132,14 @@ class App extends Component {
         return state;
     }
 
+    createPopup() {
+        //TODO REMOVE Used only for demonstrational purposes
+        if (!this.i) {
+            this.i = 0;
+        }
+        this.i = ++this.i;
+        this.popupHandler.createPopup(`POPUP №${this.i}`, <div>{'This is... You guessed it. A POPUP!!!'}</div>);
+    }
 
     render() {
         let state = this.state;
@@ -150,11 +160,13 @@ class App extends Component {
                     </div>
                 })}
             </Tooltip>;
-                    
+
 
 
         return (
             <div className="App">
+                <Popup ref={(p) => this.popupHandler = p} />
+                <button onClick={() => this.createPopup()}>MakeNewPopup</button>
 
                 <div className="flex-element flex-container-row">
                     <div className="flex-element">
