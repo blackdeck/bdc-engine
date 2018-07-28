@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "rules": {
+    "semi": "off",
+    "spaced-comment": "off",
+    "comma-dangle": [
+      1,
+      "always-multiline"
+    ],
+    "linebreak-style": 0,
+    "arrow-body-style": "off",
+    "max-len": "off",
+    "arrow-spacing": "off",
+    "react/jsx-no-bind": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-space-before-closing": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/self-closing-comp": "off",
+    "no-underscore-dangle": "off",
+    "no-console": "off",
+    "quote-props": "off"
+  }
+}
