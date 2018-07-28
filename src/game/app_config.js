@@ -6,5 +6,5 @@ export const social_links = {
 };
 
 export const support = {
-   show: 'javascript:void($zopim.livechat.window.show())',
-}
+   show: 'javascript:void($zopim.livechat.window.show())', // eslint-disable-line no-script-url
+};

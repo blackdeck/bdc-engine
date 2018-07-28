@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
-import { Tooltip, OverlayTrigger, Modal } from 'react-bootstrap';
-import Footer from './footer.js'
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import Footer from './Footer.js'
 
 import './css/App.css';
 
