@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.17.5",
-    "react": "^16.3.2",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.3.2",
+    "classnames": "2.2.5",
+    "lodash": "4.17.5",
+    "react": "16.3.2",
+    "react-bootstrap": "0.32.1",
+    "react-dom": "16.3.2",
     "react-scripts": "1.1.4"
   },
   "scripts": {
@@ -15,5 +15,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "17.0.0",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-jsx-a11y": "6.1.1",
+    "eslint-plugin-react": "7.10.0"
   }
 }
