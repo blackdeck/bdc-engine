@@ -2,12 +2,11 @@ import React from 'react';
 import './popup.css'
 
 export default class Popup extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      popupsData: []
+      popupsData: [],
     };
 
     this.closeUpperPopup = this.closeUpperPopup.bind(this);
@@ -19,7 +18,7 @@ export default class Popup extends React.Component {
   }
 
   createPopup(popupName, popupContent) {
-    this.setState((state) => {state.popupsData.push({content: popupContent, name: popupName})})
+    this.setState((state) => { state.popupsData.push({ content: popupContent, name: popupName }) })
   }
 
 
@@ -32,17 +31,19 @@ export default class Popup extends React.Component {
 
   closeUpperPopup(event) {
     event.preventDefault();
-    this.setState(state => {state.popupsData.pop()})
+    this.setState((state) => { state.popupsData.pop() })
   }
 
   composePopups(popupsData) {
     return popupsData.map((popupData, index) => {
       return (
-        <div className={'popup'} key={index} style={{'zIndex': index}}>
-          <div className={'popup-header'}>
-            <div>{popupData.name}</div>
-            <div className={'popup-close-button'} onClick={this.closeUpperPopup}>
-              <button className={'btn'}>
+        <div className="popup" key={index} style={{ 'zIndex': index }}>
+          <div className="popup-header">
+            <div>
+              {popupData.name}
+            </div>
+            <div className="popup-close-button" onClick={this.closeUpperPopup}>
+              <button className="btn">
                 close
               </button>
             </div>
@@ -55,7 +56,7 @@ export default class Popup extends React.Component {
 
 
   render() {
-    const {popupsData} = this.state;
+    const { popupsData } = this.state;
 
     if (popupsData.length === 0) {
       return null;
