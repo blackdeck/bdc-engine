@@ -19,10 +19,11 @@ module.exports = {
             'singleQuote': true,
             'trailingComma': 'es5'
         }],
+        "jsx-a11y/href-no-hash": "off",
     },
     'parserOptions': {
         'ecmaFeatures': {
             'jsx': true,
         }
     }
-}
+};
