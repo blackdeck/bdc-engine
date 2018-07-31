@@ -1,4 +1,3 @@
-
 div {
   /*  border: 1px solid; /*  for debug */
 }
@@ -82,7 +81,7 @@ div {
 }
 
 .clearfix::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }

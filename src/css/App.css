@@ -11,13 +11,12 @@ body {
 
 #tooltip > .tooltip-inner {
   width: 200px;
-  background-color: #EFEEEE;
+  background-color: #efeeee;
   color: black;
-  border: 1px solid #BDBDBD;
-
+  border: 1px solid #bdbdbd;
 }
 
-#tooltip > .tooltip-arrow{
+#tooltip > .tooltip-arrow {
   display: none;
 }
 
@@ -27,7 +26,5 @@ button {
 
 .flex-element {
   padding-top: 2.5px;
-  padding-bottom: 2.5px
-
+  padding-bottom: 2.5px;
 }
-

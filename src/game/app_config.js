@@ -1,10 +1,10 @@
 export const game_name = 'BDC-Engine-Demo';
 export const social_links = {
-    telegram: '',
-    wiki: '',
-    reddit: ''
+  telegram: '',
+  wiki: '',
+  reddit: '',
 };
 
 export const support = {
-   show: 'javascript:void($zopim.livechat.window.show())', // eslint-disable-line no-script-url
+  show: 'javascript:void($zopim.livechat.window.show())', // eslint-disable-line no-script-url
 };
