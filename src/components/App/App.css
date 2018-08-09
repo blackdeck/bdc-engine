@@ -2,7 +2,11 @@
   text-align: center;
 }
 
-body {
+.foo {
+  color: var(--main-color);
+}
+
+/*body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto Condensed', sans-serif;
@@ -27,4 +31,4 @@ button {
 .flex-element {
   padding-top: 2.5px;
   padding-bottom: 2.5px;
-}
+}*/
