@@ -12,15 +12,22 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
-    "config": "^2.0.1",
+    "config": "2.0.1",
     "husky": "0.14.3",
     "lint-staged": "7.2.0",
     "lodash": "4.17.5",
     "prettier": "1.14.0",
+    "prop-types": "15.6.2",
     "react": "16.3.2",
     "react-bootstrap": "0.32.1",
     "react-dom": "16.3.2",
-    "react-scripts": "1.1.4"
+    "react-redux": "5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "4.0.0",
+    "redux-actions": "2.6.1",
+    "redux-devtools-extension": "2.13.5",
+    "redux-observable": "1.0.0",
+    "rxjs": "6.2.2"
   },
   "devDependencies": {
     "enzyme": "3.3.0",
