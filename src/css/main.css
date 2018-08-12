@@ -4,5 +4,6 @@
 @import 'abstracts/font.vars.css';
 
 @import 'base/typography.css';
+@import 'base/base.css';
 
 @import 'layout/grid.css';

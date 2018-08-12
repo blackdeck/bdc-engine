@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({});
+import pulseReducer from './ducks/pulse.duck';
+
+const rootReducer = combineReducers({ pulse: pulseReducer });
 
 export default rootReducer;

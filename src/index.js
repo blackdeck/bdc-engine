@@ -10,10 +10,10 @@ import { Provider } from 'react-redux';
 
 import rootReducer from './reducer.root';
 import rootEpic from './epic.root';
-import App from './components/App/App';
+import App from './components/containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
-// store initial state
+// store initial state, mostly splitted to combined reducers initial states
 const initialState = {};
 const epicMiddleware = createEpicMiddleware();
 

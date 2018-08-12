@@ -20,6 +20,9 @@ Let's keep component code/styles/tests in folders with appropriate name:
 * `build` - built app (git ignored)
 * `config` - config files and configs depend on `NODE_ENV` variable e.g. `development.json` uses when `NODE_ENV==='development'`. Here can be conflicts after `eject`, so config politics should be discussed.
 * `public` - static files which usually in server `public` folder e.g. assets, index.html
+* `helpers` - util functions
+* `selectors` - reusable store selectors
+* `ducks` - action constants + action creators + reducer + epic combined in duck files 
 
 ## components 
 * `containners` - connected to store container components

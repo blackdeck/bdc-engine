@@ -20,6 +20,7 @@ module.exports = {
             'trailingComma': 'es5'
         }],
         "jsx-a11y/href-no-hash": "off",
+        "react/jsx-one-expression-per-line": "off"
     },
     'parserOptions': {
         'ecmaFeatures': {

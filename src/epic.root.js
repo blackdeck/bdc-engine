@@ -1,5 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-const rootEpic = combineEpics();
+import { pulseEpic } from './ducks/pulse.duck';
+
+const rootEpic = combineEpics(pulseEpic);
 
 export default rootEpic;

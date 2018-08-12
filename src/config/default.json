@@ -1,0 +1,7 @@
+{
+  "show": "javascript:void($zopim.livechat.window.show())",
+  "pulse": {
+    "frameDurationMs": 100,
+    "framesInTick": 5
+  }
+}
