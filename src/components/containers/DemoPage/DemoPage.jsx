@@ -22,9 +22,9 @@ class DemoPage extends PureComponent {
     return (
       <section>
         <PulseView {...{ frame, tick, isPulsing }} />
-        <button onClick={startPulse}>Start pulse</button>
-        <button onClick={stopPulse}>Stop pulse</button>
-        <button onClick={framePulse}>(debug) next frame</button>
+        <button onClick={() => startPulse()}>Start pulse</button>
+        <button onClick={() => stopPulse()}>Stop pulse</button>
+        <button onClick={() => framePulse()}>(debug) next frame</button>
       </section>
     );
   }

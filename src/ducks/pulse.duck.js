@@ -1,7 +1,10 @@
 import _ from 'lodash/fp';
-import { tap, ignoreElements } from 'rxjs/operators';
+import { interval } from 'rxjs';
+import { switchMap, mapTo, takeUntil } from 'rxjs/operators';
 import { createAction } from 'redux-actions';
 import { ofType } from 'redux-observable';
+
+import config from '../config/default';
 
 export const FRAME_PULSE = 'FRAME_PULSE';
 export const START_PULSE = 'START_PULSE';
@@ -11,12 +14,15 @@ export const framePulse = createAction(FRAME_PULSE);
 export const startPulse = createAction(START_PULSE);
 export const stopPulse = createAction(STOP_PULSE);
 
-// TODO implement here pulse
 export const pulseEpic = (action$, state$) =>
   action$.pipe(
     ofType(START_PULSE),
-    tap(action => console.log(action)),
-    ignoreElements()
+    switchMap(() =>
+      interval(config.pulse.frameDurationMs).pipe(
+        takeUntil(action$.ofType(STOP_PULSE)),
+        mapTo(framePulse())
+      )
+    )
   );
 
 export const pulseInitialState = {
